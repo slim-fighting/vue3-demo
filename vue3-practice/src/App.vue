@@ -1,31 +1,52 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <div class="box">
+      <div class="box-lef"></div>
+      <div class="box-main"></div>
+      <div class="box-right"></div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
+<script setup lang='ts'>
+import { ref, reactive } from 'vue'
+import { getApiList } from './api';
+import { useStore } from './stores'
+const list = useStore().getList()
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+console.log(getApiList());
+
+</script>
+
+<style lang="scss" >
+* {
+  padding: 0;
+  margin: 0;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+html,
+body,
+#app {
+  height: 100%;
+  overflow: hidden;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.box {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background-image: url('/src/assets/imgs/girl.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &-left {
+    width: 400px;
+
+  }
+  &-main {
+    flex: 1;
+  }
+  &-right {
+    width: 400px;
+  }
 }
 </style>
